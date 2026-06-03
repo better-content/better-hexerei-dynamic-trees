@@ -1,0 +1,146 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '6.0.44'
+    id 'eclipse'
+    id 'maven-publish'
+}
+
+version = project.hasProperty('mod_version') ? project.mod_version : '1.0.0'
+group = 'com.dthexerei'
+base {
+    archivesName = 'dthexerei'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            property 'forge.enabledGameTestNamespaces', 'dthexerei,minecraft'
+        }
+
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                dthexerei {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                dthexerei {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('run-gametest')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                dthexerei {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            args '--mod', 'dthexerei',
+                 '--all',
+                 '--output', file('src/generated/resources/'),
+                 '--existing', file('src/main/resources/'),
+                 '--existing-mod', 'dynamictrees',
+                 '--existing-mod', 'hexerei'
+            mods {
+                dthexerei {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    exclude '.cache/**'
+}
+
+if (file('src/gameteststructures').exists()) {
+    tasks.register('syncGameTestStructures', Copy) {
+        from('src/gameteststructures')
+        into(project.file('run-gametest/gameteststructures'))
+    }
+
+    tasks.matching { it.name.startsWith('prepareRunGameTestServer') }.configureEach {
+        dependsOn(tasks.named('syncGameTestStructures'))
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        name = 'MinecraftForge'
+        url = 'https://maven.minecraftforge.net'
+    }
+    maven {
+        url = 'https://harleyoconnor.com/maven'
+    }
+    maven {
+        url = 'https://www.cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.13'
+    implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-1.20.1:1.4.9")
+    def localHexerei = file('libs/hexerei-0.4.2.3.jar')
+    if (localHexerei.exists()) {
+        runtimeOnly fg.deobf("local.hexerei:hexerei:0.4.2.3")
+    } else {
+        runtimeOnly fg.deobf("curse.maven:hexerei-548599:6314111")
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation 'com.google.code.gson:gson:2.10.1'
+    // Optional at runtime if you use DTPlus-only treepack content.
+    // runtimeOnly fg.deobf("com.ferreusveritas.dynamictreesplus:DynamicTreesPlus-1.20.1:1.2.1")
+}
+
+tasks.named('jar') {
+    manifest {
+        attributes([
+                'Specification-Title'     : 'dthexerei',
+                'Specification-Vendor'    : 'dthexerei',
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.version,
+                'Implementation-Vendor'   : 'dthexerei'
+        ])
+    }
+}
+
+jar {
+    finalizedBy 'reobfJar'
+}
+
+test {
+    useJUnitPlatform()
+}

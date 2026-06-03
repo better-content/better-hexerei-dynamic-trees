@@ -1,0 +1,10 @@
+{
+  "primitive_leaves": "hexerei:mahogany_leaves",
+  "cell_kit": "dynamictrees:deciduous",
+  "model_overrides": {
+    "leaves": "hexerei:block/mahogany_leaves"
+  },
+  "texture_overrides": {
+    "leaves": "hexerei:block/mahogany_leaves"
+  }
+}

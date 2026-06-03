@@ -1,0 +1,10 @@
+{
+  "primitive_leaves": "hexerei:willow_leaves",
+  "cell_kit": "dynamictrees:deciduous",
+  "model_overrides": {
+    "leaves": "hexerei:block/willow_leaves"
+  },
+  "texture_overrides": {
+    "leaves": "hexerei:block/willow_leaves"
+  }
+}

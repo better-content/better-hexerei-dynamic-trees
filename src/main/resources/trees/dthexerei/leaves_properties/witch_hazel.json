@@ -1,0 +1,10 @@
+{
+  "primitive_leaves": "hexerei:witch_hazel_leaves",
+  "cell_kit": "dynamictrees:deciduous",
+  "model_overrides": {
+    "leaves": "hexerei:block/witch_hazel_leaves"
+  },
+  "texture_overrides": {
+    "leaves": "hexerei:block/witch_hazel_leaves"
+  }
+}

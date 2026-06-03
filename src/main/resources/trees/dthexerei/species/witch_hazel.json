@@ -1,0 +1,27 @@
+{
+  "family": "dthexerei:witch_hazel",
+  "leaves_properties": "dthexerei:witch_hazel",
+  "tapering": 0.18,
+  "signal_energy": 14.0,
+  "growth_rate": 0.75,
+  "up_probability": 3,
+  "lowest_branch_height": 3,
+  "soil_longevity": 6,
+  "environment_factors": {
+    "#forge:is_cold": 0.8,
+    "#forge:is_hot": 0.65,
+    "#forge:is_dry": 0.75,
+    "#is_forest": 1.15
+  },
+  "perfect_biomes": {
+    "name": "minecraft:birch_forest"
+  },
+  "primitive_sapling": "hexerei:witch_hazel_sapling",
+  "features": [
+    "roots",
+    "bee_nest"
+  ],
+  "lang_overrides": {
+    "seed": "Witch Hazel Seed"
+  }
+}
