@@ -1,10 +1,15 @@
 package com.dthexerei.dthexerei.gametest;
 
 import com.dthexerei.dthexerei.Dthexerei;
+import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors;
+import com.ferreusveritas.dynamictrees.api.worldgen.FeatureCanceller;
 import com.ferreusveritas.dynamictrees.tree.species.Species;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraftforge.event.RegisterGameTestsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -32,6 +37,15 @@ public final class DthexereiGameTests {
         helper.succeed();
     }
 
+    @GameTest(templateNamespace = "minecraft", template = "empty", batch = "dthexerei_replacement", timeoutTicks = 80)
+    public static void hexereiStaticTreeFeaturesAreCancelledForReplacement(final GameTestHelper helper) {
+        assertCancels(helper, "mahogany_tree", "hexerei:mahogany");
+        assertCancels(helper, "willow_tree", "hexerei:willow");
+        assertCancels(helper, "witch_hazel_tree", "hexerei:witch_hazel");
+        assertDoesNotCancel(helper, "mahogany_tree", "hexerei:selenite_geode");
+        helper.succeed();
+    }
+
     private static void assertDynamicTree(final GameTestHelper helper, final String tree, final String primitiveSapling) {
         Species species = Species.REGISTRY.get(Dthexerei.location(tree));
         helper.assertTrue(species.isValid(), "species should load: " + tree);
@@ -44,6 +58,39 @@ public final class DthexereiGameTests {
                 ForgeRegistries.BLOCKS.containsKey(new ResourceLocation(primitiveSapling)),
                 "primitive sapling should exist: " + primitiveSapling
         );
+    }
+
+    private static void assertCancels(final GameTestHelper helper, final String cancellerName, final String configuredFeatureId) {
+        FeatureCanceller canceller = FeatureCanceller.REGISTRY.get(Dthexerei.location(cancellerName));
+        helper.assertTrue(canceller != FeatureCanceller.NULL_CANCELLER, "canceller should be registered: " + cancellerName);
+        helper.assertTrue(
+                canceller.shouldCancel(configuredFeature(helper, configuredFeatureId), cancellationForHexereiNamespace(canceller)),
+                "canceller " + cancellerName + " should remove static feature " + configuredFeatureId
+        );
+    }
+
+    private static void assertDoesNotCancel(final GameTestHelper helper, final String cancellerName, final String configuredFeatureId) {
+        FeatureCanceller canceller = FeatureCanceller.REGISTRY.get(Dthexerei.location(cancellerName));
+        helper.assertFalse(
+                canceller.shouldCancel(configuredFeature(helper, configuredFeatureId), cancellationForHexereiNamespace(canceller)),
+                "canceller " + cancellerName + " should not remove unrelated feature " + configuredFeatureId
+        );
+    }
+
+    private static ConfiguredFeature<?, ?> configuredFeature(final GameTestHelper helper, final String id) {
+        ResourceLocation location = new ResourceLocation(id);
+        return helper.getLevel()
+                .registryAccess()
+                .registryOrThrow(Registries.CONFIGURED_FEATURE)
+                .getHolderOrThrow(ResourceKey.create(Registries.CONFIGURED_FEATURE, location))
+                .value();
+    }
+
+    private static BiomePropertySelectors.NormalFeatureCancellation cancellationForHexereiNamespace(final FeatureCanceller canceller) {
+        BiomePropertySelectors.NormalFeatureCancellation cancellation = new BiomePropertySelectors.NormalFeatureCancellation();
+        cancellation.cancelUsing(canceller);
+        cancellation.cancelWithNamespace("hexerei");
+        return cancellation;
     }
 
 }
