@@ -35,7 +35,10 @@ It also cancels the matching Hexerei static configured tree features in those sa
 Run:
 
 ```sh
-./gradlew clean test runGameTestServer build
+./gradlew verifyFast
+./gradlew verifyFull
 ```
+
+`verifyFast` runs the unit-test lane. `verifyFull` adds the headless Forge GameTest pass.
 
 If CurseMaven cannot serve Hexerei, place `hexerei-0.4.2.3.jar` in `libs/`; the Gradle build prefers that local jar when present.
