@@ -1,0 +1,11 @@
+{
+  "block.dynamic_trees_hexerei.mahogany_branch": "Mahogany Tree",
+  "block.dynamic_trees_hexerei.willow_branch": "Willow Tree",
+  "block.dynamic_trees_hexerei.witch_hazel_branch": "Witch Hazel Tree",
+  "item.dynamic_trees_hexerei.mahogany_seed": "Mahogany Seed",
+  "item.dynamic_trees_hexerei.willow_seed": "Willow Seed",
+  "item.dynamic_trees_hexerei.witch_hazel_seed": "Witch Hazel Seed",
+  "species.dynamic_trees_hexerei.mahogany": "Mahogany",
+  "species.dynamic_trees_hexerei.willow": "Willow",
+  "species.dynamic_trees_hexerei.witch_hazel": "Witch Hazel"
+}

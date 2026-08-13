@@ -1,0 +1,41 @@
+[
+  {
+    "__comment": "Cancel Hexerei's static mahogany feature where this addon injects dynamic mahogany.",
+    "select": {
+      "names": [
+        "minecraft:jungle",
+        "minecraft:bamboo_jungle"
+      ]
+    },
+    "cancellers": {
+      "type": "dynamic_trees_hexerei:mahogany_tree",
+      "namespaces": [
+        "hexerei"
+      ]
+    }
+  },
+  {
+    "__comment": "Cancel Hexerei's static willow feature where this addon injects dynamic willow.",
+    "select": {
+      "tag": "#forge:is_swamp"
+    },
+    "cancellers": {
+      "type": "dynamic_trees_hexerei:willow_tree",
+      "namespaces": [
+        "hexerei"
+      ]
+    }
+  },
+  {
+    "__comment": "Cancel Hexerei's static witch hazel feature where this addon injects dynamic witch hazel.",
+    "select": {
+      "name": "minecraft:birch_forest"
+    },
+    "cancellers": {
+      "type": "dynamic_trees_hexerei:witch_hazel_tree",
+      "namespaces": [
+        "hexerei"
+      ]
+    }
+  }
+]

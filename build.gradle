@@ -5,9 +5,9 @@ plugins {
 }
 
 version = project.hasProperty('mod_version') ? project.mod_version : '1.0.0'
-group = 'com.dthexerei'
+group = 'com.bettercontent'
 base {
-    archivesName = 'dthexerei'
+    archivesName = project.property('artifact_name')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -21,7 +21,7 @@ minecraft {
         configureEach {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.enabledGameTestNamespaces', 'dthexerei,minecraft'
+            property 'forge.enabledGameTestNamespaces', 'dynamic_trees_hexerei,minecraft'
         }
 
         client {
@@ -29,7 +29,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                dthexerei {
+                dynamic_trees_hexerei {
                     source sourceSets.main
                 }
             }
@@ -40,7 +40,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                dthexerei {
+                dynamic_trees_hexerei {
                     source sourceSets.main
                 }
             }
@@ -51,7 +51,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                dthexerei {
+                dynamic_trees_hexerei {
                     source sourceSets.main
                 }
             }
@@ -59,14 +59,14 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            args '--mod', 'dthexerei',
+            args '--mod', 'dynamic_trees_hexerei',
                  '--all',
                  '--output', file('src/generated/resources/'),
                  '--existing', file('src/main/resources/'),
                  '--existing-mod', 'dynamictrees',
                  '--existing-mod', 'hexerei'
             mods {
-                dthexerei {
+                dynamic_trees_hexerei {
                     source sourceSets.main
                 }
             }
@@ -127,12 +127,12 @@ dependencies {
 tasks.named('jar') {
     manifest {
         attributes([
-                'Specification-Title'     : 'dthexerei',
-                'Specification-Vendor'    : 'dthexerei',
+                'Specification-Title'     : 'dynamic_trees_hexerei',
+                'Specification-Vendor'    : 'dynamic_trees_hexerei',
                 'Specification-Version'   : '1',
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.version,
-                'Implementation-Vendor'   : 'dthexerei'
+                'Implementation-Vendor'   : 'dynamic_trees_hexerei'
         ])
     }
 }
