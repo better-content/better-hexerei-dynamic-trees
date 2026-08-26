@@ -1,12 +1,13 @@
 modLoader="javafml"
 loaderVersion="[47,)"
 license="AGPL-3.0-or-later"
-issueTrackerURL="https://github.com/yourname/dynamic_trees_hexerei/issues"
+issueTrackerURL="https://github.com/better-content/dynamic-trees-hexerei/issues"
 
 [[mods]]
 modId="dynamic_trees_hexerei"
 version="${file.jarVersion}"
 displayName="Dynamic Trees for Hexerei"
+displayURL="https://github.com/better-content/dynamic-trees-hexerei"
 authors="gerald"
 description='''Dynamic Trees compatibility addon for Hexerei willow, mahogany, and witch hazel trees.'''
 
