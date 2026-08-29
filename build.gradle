@@ -111,7 +111,7 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.13'
-    implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-1.20.1:1.4.9")
+    implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-1.20.1:1.4.10")
     def localHexerei = file('libs/hexerei-0.4.2.3.jar')
     if (localHexerei.exists()) {
         runtimeOnly fg.deobf("local.hexerei:hexerei:0.4.2.3")
@@ -120,11 +120,10 @@ dependencies {
     }
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testImplementation 'com.google.code.gson:gson:2.10.1'
-    // Optional at runtime if you use DTPlus-only treepack content.
-    // runtimeOnly fg.deobf("com.ferreusveritas.dynamictreesplus:DynamicTreesPlus-1.20.1:1.2.1")
 }
 
 tasks.named('jar') {
+    exclude 'com/bettercontent/dynamictreeshexerei/gametest/**'
     manifest {
         attributes([
                 'Specification-Title'     : 'dynamic_trees_hexerei',

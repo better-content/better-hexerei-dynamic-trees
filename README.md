@@ -6,7 +6,7 @@ Forge 1.20.1 addon that provides Dynamic Trees integration for Hexerei mahogany,
 
 - Minecraft: `1.20.1`
 - Forge: `47.4.13`
-- Dynamic Trees build dependency: `1.4.9`
+- Dynamic Trees build dependency: `1.4.10`
 - Hexerei runtime dependency: `hexerei-0.4.2.3.jar`
 
 ## Trees Included
