@@ -91,9 +91,6 @@ if (file('src/gameteststructures').exists()) {
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
     maven {
         name = 'MinecraftForge'
         url = 'https://maven.minecraftforge.net'
@@ -112,12 +109,7 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.13'
     implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-1.20.1:1.4.10")
-    def localHexerei = file('libs/hexerei-0.4.2.3.jar')
-    if (localHexerei.exists()) {
-        runtimeOnly fg.deobf("local.hexerei:hexerei:0.4.2.3")
-    } else {
-        runtimeOnly fg.deobf("curse.maven:hexerei-548599:6314111")
-    }
+    runtimeOnly fg.deobf("curse.maven:hexerei-548599:6314111")
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testImplementation 'com.google.code.gson:gson:2.10.1'
 }
