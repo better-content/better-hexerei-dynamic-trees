@@ -2,10 +2,10 @@
 
 ## Scope
 
-This repository contains the Better Content-owned Forge mod **Dynamic Trees Hexerei**.
+This repository contains the Better Content-owned Forge mod **Better Hexerei Dynamic Trees**.
 
-- Canonical mod ID: `dynamic_trees_hexerei`
-- Canonical artifact: `dynamic-trees-hexerei-<version>.jar`
+- Canonical mod ID: `better_hexerei_dynamic_trees`
+- Canonical artifact: `better-hexerei-dynamic-trees-<version>.jar`
 - Maven group: `com.bettercontent`
 - Java runtime: 17
 - Minecraft/Forge baseline: 1.20.1 / 47.4.13

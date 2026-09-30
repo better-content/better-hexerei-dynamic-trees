@@ -1,0 +1,13 @@
+{
+  "common_leaves": "better_hexerei_dynamic_trees:willow",
+  "common_species": "better_hexerei_dynamic_trees:willow",
+  "primitive_log": "hexerei:willow_log",
+  "primitive_stripped_log": "hexerei:stripped_willow_log",
+  "max_branch_radius": 8,
+  "texture_overrides": {
+    "branch": "hexerei:block/willow_log",
+    "branch_top": "hexerei:block/willow_log_top",
+    "stripped_branch": "hexerei:block/stripped_willow_log",
+    "stripped_branch_top": "hexerei:block/stripped_willow_log_top"
+  }
+}

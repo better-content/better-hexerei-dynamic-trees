@@ -1,38 +1,38 @@
 modLoader="javafml"
 loaderVersion="[47,)"
 license="AGPL-3.0-or-later"
-issueTrackerURL="https://github.com/better-content/dynamic-trees-hexerei/issues"
+issueTrackerURL="https://github.com/better-content/better-hexerei-dynamic-trees/issues"
 
 [[mods]]
-modId="dynamic_trees_hexerei"
+modId="better_hexerei_dynamic_trees"
 version="${file.jarVersion}"
 displayName="Dynamic Trees for Hexerei"
-displayURL="https://github.com/better-content/dynamic-trees-hexerei"
+displayURL="https://github.com/better-content/better-hexerei-dynamic-trees"
 authors="gerald"
 description='''Dynamic Trees compatibility addon for Hexerei willow, mahogany, and witch hazel trees.'''
 
-[[dependencies.dynamic_trees_hexerei]]
+[[dependencies.better_hexerei_dynamic_trees]]
     modId="forge"
     mandatory=true
     versionRange="[47.4.13,48)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.dynamic_trees_hexerei]]
+[[dependencies.better_hexerei_dynamic_trees]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20.1,1.21)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.dynamic_trees_hexerei]]
+[[dependencies.better_hexerei_dynamic_trees]]
     modId="dynamictrees"
     mandatory=true
     versionRange="[1.20.1-1.4.10,1.20.1-1.5.0)"
     ordering="AFTER"
     side="BOTH"
 
-[[dependencies.dynamic_trees_hexerei]]
+[[dependencies.better_hexerei_dynamic_trees]]
     modId="hexerei"
     mandatory=true
     versionRange="[0.4.2,)"

@@ -1,6 +1,0 @@
-{
-  "parent": "dynamictrees:item/standard_seed",
-  "textures": {
-    "layer0": "dynamic_trees_hexerei:item/witch_hazel_seed"
-  }
-}

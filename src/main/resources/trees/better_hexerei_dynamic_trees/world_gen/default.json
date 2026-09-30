@@ -1,0 +1,58 @@
+[
+  {
+    "select": {
+      "name": "minecraft:jungle"
+    },
+    "apply": {
+      "species": {
+        "method": "splice_before",
+        "random": {
+          "better_hexerei_dynamic_trees:mahogany": 2,
+          "...": 18
+        }
+      }
+    }
+  },
+  {
+    "select": {
+      "name": "minecraft:bamboo_jungle"
+    },
+    "apply": {
+      "species": {
+        "method": "splice_before",
+        "random": {
+          "better_hexerei_dynamic_trees:mahogany": 1,
+          "...": 14
+        }
+      }
+    }
+  },
+  {
+    "select": {
+      "tag": "#forge:is_swamp"
+    },
+    "apply": {
+      "species": {
+        "method": "splice_before",
+        "random": {
+          "better_hexerei_dynamic_trees:willow": 2,
+          "...": 6
+        }
+      }
+    }
+  },
+  {
+    "select": {
+      "name": "minecraft:birch_forest"
+    },
+    "apply": {
+      "species": {
+        "method": "splice_before",
+        "random": {
+          "better_hexerei_dynamic_trees:witch_hazel": 1,
+          "...": 7
+        }
+      }
+    }
+  }
+]

@@ -1,4 +1,4 @@
-# Dynamic Trees for Hexerei (`dynamic_trees_hexerei`)
+# Dynamic Trees for Hexerei (`better_hexerei_dynamic_trees`)
 
 Forge 1.20.1 addon that provides Dynamic Trees integration for Hexerei mahogany, willow, and witch hazel trees.
 
@@ -11,9 +11,9 @@ Forge 1.20.1 addon that provides Dynamic Trees integration for Hexerei mahogany,
 
 ## Trees Included
 
-- `dynamic_trees_hexerei:mahogany`
-- `dynamic_trees_hexerei:willow`
-- `dynamic_trees_hexerei:witch_hazel`
+- `better_hexerei_dynamic_trees:mahogany`
+- `better_hexerei_dynamic_trees:willow`
+- `better_hexerei_dynamic_trees:witch_hazel`
 
 Each species maps back to Hexerei primitive logs, stripped logs, leaves, and saplings, while Dynamic Trees generates the dynamic branches, seeds, and saplings.
 
@@ -49,9 +49,9 @@ For modpack and mod discussion, playtest feedback, and bug reports, join the [Be
 
 ## Canonical identity
 
-- Repository and Gradle project: `dynamic-trees-hexerei`
-- Mod ID and resource namespace: `dynamic_trees_hexerei`
+- Repository and Gradle project: `better-hexerei-dynamic-trees`
+- Mod ID and resource namespace: `better_hexerei_dynamic_trees`
 - Maven group: `com.bettercontent`
-- Runtime artifact: `build/libs/dynamic-trees-hexerei-<version>.jar`
+- Runtime artifact: `build/libs/better-hexerei-dynamic-trees-<version>.jar`
 
 The canonical identity is a clean break. Legacy mod IDs, resource namespaces, configuration paths, commands, network channels, and saved-data keys are not migrated or aliased.

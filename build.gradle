@@ -21,7 +21,7 @@ minecraft {
         configureEach {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.enabledGameTestNamespaces', 'dynamic_trees_hexerei,minecraft'
+            property 'forge.enabledGameTestNamespaces', 'better_hexerei_dynamic_trees,minecraft'
         }
 
         client {
@@ -29,7 +29,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                dynamic_trees_hexerei {
+                better_hexerei_dynamic_trees {
                     source sourceSets.main
                 }
             }
@@ -40,7 +40,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                dynamic_trees_hexerei {
+                better_hexerei_dynamic_trees {
                     source sourceSets.main
                 }
             }
@@ -51,7 +51,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                dynamic_trees_hexerei {
+                better_hexerei_dynamic_trees {
                     source sourceSets.main
                 }
             }
@@ -59,14 +59,14 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            args '--mod', 'dynamic_trees_hexerei',
+            args '--mod', 'better_hexerei_dynamic_trees',
                  '--all',
                  '--output', file('src/generated/resources/'),
                  '--existing', file('src/main/resources/'),
                  '--existing-mod', 'dynamictrees',
                  '--existing-mod', 'hexerei'
             mods {
-                dynamic_trees_hexerei {
+                better_hexerei_dynamic_trees {
                     source sourceSets.main
                 }
             }
@@ -115,15 +115,15 @@ dependencies {
 }
 
 tasks.named('jar') {
-    exclude 'com/bettercontent/dynamictreeshexerei/gametest/**'
+    exclude 'com/bettercontent/betterhexereidynamictrees/gametest/**'
     manifest {
         attributes([
-                'Specification-Title'     : 'dynamic_trees_hexerei',
-                'Specification-Vendor'    : 'dynamic_trees_hexerei',
+                'Specification-Title'     : 'better_hexerei_dynamic_trees',
+                'Specification-Vendor'    : 'better_hexerei_dynamic_trees',
                 'Specification-Version'   : '1',
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.version,
-                'Implementation-Vendor'   : 'dynamic_trees_hexerei'
+                'Implementation-Vendor'   : 'better_hexerei_dynamic_trees'
         ])
     }
 }
