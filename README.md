@@ -1,5 +1,11 @@
 # Dynamic Trees for Hexerei (`better_hexerei_dynamic_trees`)
 
+## Scope and authority
+
+This repository owns its mod-specific behavior and authoring inputs. Read [local instructions](AGENTS.md)
+and the [shared documentation/policy index](../../better-content-modpack/docs/README.md).
+
+
 Forge 1.20.1 addon that provides Dynamic Trees integration for Hexerei mahogany, willow, and witch hazel trees.
 
 ## Versions
