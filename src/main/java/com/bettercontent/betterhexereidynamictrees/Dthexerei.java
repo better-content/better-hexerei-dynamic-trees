@@ -19,6 +19,7 @@ public class Dthexerei {
     public static final String MODID = "better_hexerei_dynamic_trees";
 
     public Dthexerei() {
+        com.bettercontent.betterhexereidynamictrees.diagnostics.RuntimeDiagnostics.initialize();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::gatherData);
         RegistryHandler.setup(MODID);

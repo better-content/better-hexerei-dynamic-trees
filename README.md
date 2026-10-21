@@ -8,6 +8,8 @@ and the [shared documentation/policy index](../../better-content-modpack/docs/RE
 
 Forge 1.20.1 addon that provides Dynamic Trees integration for Hexerei mahogany, willow, and witch hazel trees.
 
+See [bounded playtest observations](docs/playtest-observations.md) for exact feature-cancellation diagnostics.
+
 ## Versions
 
 - Minecraft: `1.20.1`
@@ -46,6 +48,11 @@ Run:
 ```
 
 `verifyFast` runs the unit-test lane. `verifyFull` adds the headless Forge GameTest pass.
+The SOURCE runtime fixture includes the production BOTH-side Patchouli 85 pin
+(`curse.maven:patchouli-306770:7731017`). Dynamic Trees' guide conditional recipe
+requires its actual book serializer; no recipe or registry data is removed. Patchouli
+has no mandatory mod transitives beyond Forge/Minecraft. This fixture completion
+still requires a newly admitted strict full gate with the same two required tests.
 
 If CurseMaven cannot serve Hexerei, place `hexerei-0.4.2.3.jar` in `libs/`; the Gradle build prefers that local jar when present.
 

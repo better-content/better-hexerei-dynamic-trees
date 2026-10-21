@@ -110,6 +110,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.13'
     implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-1.20.1:1.4.10")
     runtimeOnly fg.deobf("curse.maven:hexerei-548599:6314111")
+    // SOURCE fixture: exact BOTH-side production Patchouli 85 pin; supplies Dynamic Trees' native guide recipe serializer.
+    runtimeOnly fg.deobf("curse.maven:patchouli-306770:7731017")
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testImplementation 'com.google.code.gson:gson:2.10.1'
 }
@@ -167,3 +169,4 @@ tasks.register('verifyFull') {
     dependsOn tasks.named('verifyFast')
     dependsOn tasks.named('headlessGameTest')
 }
+apply from: file('gradle/native-gametest-fixture.gradle')

@@ -31,8 +31,12 @@ public final class HexereiTreeFeatureCanceller {
             public boolean shouldCancel(final ConfiguredFeature<?, ?> configuredFeature,
                                         final BiomePropertySelectors.NormalFeatureCancellation cancellation) {
                 final ResourceLocation featureName = ForgeRegistries.FEATURES.getKey(configuredFeature.feature());
-                return hexereiFeature.equals(featureName)
-                        && cancellation.shouldCancelNamespace(hexereiFeature.getNamespace());
+                boolean matches = hexereiFeature.equals(featureName);
+                boolean canceled = matches && cancellation.shouldCancelNamespace(hexereiFeature.getNamespace());
+                var log = com.bettercontent.betterhexereidynamictrees.diagnostics.RuntimeDiagnostics.LOG;
+                if (log.enabled("worldgen")) com.bettercontent.betterhexereidynamictrees.diagnostics.FeatureObservation.cancellation(
+                    log, matches, canceled, hexereiFeature.toString(), featureName);
+                return canceled;
             }
         };
     }
