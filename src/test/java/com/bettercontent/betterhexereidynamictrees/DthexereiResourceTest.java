@@ -80,14 +80,33 @@ final class DthexereiResourceTest {
     @Test
     void worldGenTargetsPackagedSpeciesAndHexereiFeatureCancellers() throws IOException {
         JsonElement defaultWorldGen = JsonParser.parseReader(Files.newBufferedReader(TREE_ROOT.resolve("world_gen/default.json")));
+        Map<String, String> expectedBySelector = Map.of(
+                "name:minecraft:jungle", "better_hexerei_dynamic_trees:mahogany",
+                "name:minecraft:bamboo_jungle", "better_hexerei_dynamic_trees:mahogany",
+                "tag:#forge:is_swamp", "better_hexerei_dynamic_trees:willow",
+                "name:minecraft:birch_forest", "better_hexerei_dynamic_trees:witch_hazel"
+        );
+        Map<String, String> actualBySelector = new java.util.HashMap<>();
         defaultWorldGen.getAsJsonArray().forEach(element -> {
-            JsonObject apply = element.getAsJsonObject().getAsJsonObject("apply");
-            JsonObject random = apply.getAsJsonObject("species").getAsJsonObject("random");
-            assertTrue(random.keySet().stream().anyMatch(EXPECTED_SPECIES::contains), "worldgen entry must inject a Hexerei species");
-            assertTrue(random.has("..."), "worldgen splice must preserve existing Dynamic Trees species choices");
+            JsonObject entry = element.getAsJsonObject();
+            JsonObject select = entry.getAsJsonObject("select");
+            assertEquals(1, select.size(), "worldgen selector should identify one biome or tag");
+            String selector = select.has("name") ? "name:" + select.get("name").getAsString()
+                    : "tag:" + select.get("tag").getAsString();
+            JsonObject apply = entry.getAsJsonObject("apply");
+            JsonObject species = apply.getAsJsonObject("species");
+            assertEquals("splice_before", species.get("method").getAsString());
+            JsonObject random = species.getAsJsonObject("random");
+            String expected = expectedBySelector.get(selector);
+            assertTrue(expected != null, "unexpected worldgen selector " + selector);
+            assertEquals(Set.of(expected, "..."), random.keySet(), "worldgen selector injects wrong tree: " + selector);
+            assertTrue(random.get(expected).getAsInt() > 0, "injected tree must have positive weight");
+            assertTrue(random.get("...").getAsInt() > 0, "existing Dynamic Trees choices must retain positive weight");
+            assertEquals(null, actualBySelector.put(selector, expected), "duplicate worldgen selector " + selector);
             assertFalse(apply.has("density"), "worldgen should not override biome tree density");
             assertFalse(apply.has("chance"), "worldgen should not override biome tree chance");
         });
+        assertEquals(expectedBySelector, actualBySelector, "worldgen selectors must match static feature cancellation regions");
 
         JsonArray cancellers = JsonParser.parseReader(
                 Files.newBufferedReader(TREE_ROOT.resolve("world_gen/feature_cancellers.json"))
